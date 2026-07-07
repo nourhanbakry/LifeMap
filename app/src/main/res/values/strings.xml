@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">LifeMap</string>
+    <string name="forgot_password">forgot password</string>
+    <string name="organize_your_tasks_and_build_better_habits">Organize your tasks and build\nbetter habits.</string>
+    <string name="welcome_image">Welcome Image</string>
+    <string name="welcome_to_lifemap">Welcome to\nLifeMap</string>
+    <string name="get_started">Get Started</string>
+    <string name="login">Login</string>
+    <string name="welcome_back_to_lifemap">Welcome back to LifeMap</string>
+    <string name="email">Email</string>
+    <string name="your_email_com">your@email.com</string>
+    <string name="email_icon">Email Icon</string>
+    <string name="password">Password</string>
+    <string name="password_icon">Password Icon</string>
+    <string name="password_placeholder">••••••••</string>
+    <string name="hide_password">Hide Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="don_t_have_an_account">"Don't have an account? "</string>
+    <string name="sign_up">Sign Up</string>
+</resources>
