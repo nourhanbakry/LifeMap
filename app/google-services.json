@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "877225329084",
+    "project_id": "lifemap-22dd2",
+    "storage_bucket": "lifemap-22dd2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877225329084:android:6cf418893e9d89cc97ebb9",
+        "android_client_info": {
+          "package_name": "com.example.lifemap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7UpFXv-NnGNUNYJ-Cx9_z2lKNKVJ6hbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

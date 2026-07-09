@@ -1,0 +1,41 @@
+package com.example.lifemap.di
+
+import com.example.lifemap.data.local.UserPreferences
+import com.example.lifemap.data.remote.AuthRemoteDataSource
+import com.example.lifemap.data.remote.TaskRemoteDataSource
+import com.example.lifemap.data.repoImpl.AuthRepositoryImpl
+import com.example.lifemap.data.repoImpl.TaskRepositoryImpl
+import com.example.lifemap.domain.repoInterface.AuthRepository
+import com.example.lifemap.domain.repoInterface.TaskRepository
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        remote: AuthRemoteDataSource,
+        local: UserPreferences
+    ): AuthRepository {
+
+        return AuthRepositoryImpl(remote, local)
+
+    }
+
+    @Provides
+    @Singleton
+    fun provideTaskRepository(
+        remote: TaskRemoteDataSource
+    ): TaskRepository {
+
+        return TaskRepositoryImpl(remote)
+
+    }
+
+}
