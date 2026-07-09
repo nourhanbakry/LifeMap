@@ -35,7 +35,11 @@ class HomeViewModel @Inject constructor(
 
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = today,
+<<<<<<< HEAD
+            weekDatesMillis = computeMonthDays(today),
+=======
             weekDatesMillis = computeWeek(today),
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             monthLabel = monthLabel(today)
         )
 
@@ -90,7 +94,11 @@ class HomeViewModel @Inject constructor(
 
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = normalized,
+<<<<<<< HEAD
+            weekDatesMillis = computeMonthDays(normalized),
+=======
             weekDatesMillis = computeWeek(normalized),
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             monthLabel = monthLabel(normalized)
         )
 
@@ -108,7 +116,11 @@ class HomeViewModel @Inject constructor(
 
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = newDate,
+<<<<<<< HEAD
+            weekDatesMillis = computeMonthDays(newDate),
+=======
             weekDatesMillis = computeWeek(newDate),
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             monthLabel = monthLabel(newDate)
         )
 
@@ -158,6 +170,24 @@ class HomeViewModel @Inject constructor(
         return calendar.timeInMillis
     }
 
+<<<<<<< HEAD
+    private fun computeMonthDays(dateMillis: Long): List<Long> {
+
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = dateMillis
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+
+        val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+
+        val days = mutableListOf<Long>()
+
+        for (i in 0 until daysInMonth) {
+            days.add(calendar.timeInMillis)
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return days
+=======
     private fun computeWeek(dateMillis: Long): List<Long> {
 
         val calendar = Calendar.getInstance()
@@ -176,6 +206,7 @@ class HomeViewModel @Inject constructor(
         }
 
         return week
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
     }
 
     private fun monthLabel(dateMillis: Long): String {

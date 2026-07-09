@@ -13,6 +13,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+<<<<<<< HEAD
+import androidx.compose.foundation.layout.imePadding
+=======
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -108,6 +112,10 @@ fun EditTaskScreen(navController: NavController) {
             .fillMaxSize()
             .background(Color(0xFFF8F9FC))
             .verticalScroll(rememberScrollState())
+<<<<<<< HEAD
+            .imePadding()
+=======
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             .padding(horizontal = 20.dp)
     ) {
 
@@ -176,6 +184,28 @@ fun EditTaskScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         FieldLabel("Date")
+<<<<<<< HEAD
+        Box(modifier = Modifier.fillMaxWidth()) {
+            OutlinedTextField(
+                value = dateFormat.format(state.dateMillis),
+                onValueChange = {},
+                enabled = false,
+                trailingIcon = { Icon(Icons.Filled.CalendarToday, contentDescription = "Pick date") },
+                shape = RoundedCornerShape(12.dp),
+                colors = fieldColors(),
+                modifier = Modifier.fillMaxWidth()
+            )
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .clickable {
+                        showDatePicker(context, state.dateMillis) { millis ->
+                            viewModel.onEvent(EditTaskEvent.DateChanged(millis))
+                        }
+                    }
+            )
+        }
+=======
         OutlinedTextField(
             value = dateFormat.format(state.dateMillis),
             onValueChange = {},
@@ -191,12 +221,35 @@ fun EditTaskScreen(navController: NavController) {
                     }
                 }
         )
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Row(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.weight(1f)) {
                 FieldLabel("Start Time")
+<<<<<<< HEAD
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    OutlinedTextField(
+                        value = state.startTime,
+                        onValueChange = {},
+                        enabled = false,
+                        trailingIcon = { Icon(Icons.Filled.Schedule, contentDescription = "Pick start time") },
+                        shape = RoundedCornerShape(12.dp),
+                        colors = fieldColors(),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize()
+                            .clickable {
+                                showTimePicker(context) { time ->
+                                    viewModel.onEvent(EditTaskEvent.StartTimeChanged(time))
+                                }
+                            }
+                    )
+                }
+=======
                 OutlinedTextField(
                     value = state.startTime,
                     onValueChange = {},
@@ -212,12 +265,35 @@ fun EditTaskScreen(navController: NavController) {
                             }
                         }
                 )
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             }
 
             Spacer(modifier = Modifier.width(12.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 FieldLabel("End Time")
+<<<<<<< HEAD
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    OutlinedTextField(
+                        value = state.endTime,
+                        onValueChange = {},
+                        enabled = false,
+                        trailingIcon = { Icon(Icons.Filled.Schedule, contentDescription = "Pick end time") },
+                        shape = RoundedCornerShape(12.dp),
+                        colors = fieldColors(),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Box(
+                        modifier = Modifier
+                            .matchParentSize()
+                            .clickable {
+                                showTimePicker(context) { time ->
+                                    viewModel.onEvent(EditTaskEvent.EndTimeChanged(time))
+                                }
+                            }
+                    )
+                }
+=======
                 OutlinedTextField(
                     value = state.endTime,
                     onValueChange = {},
@@ -233,6 +309,7 @@ fun EditTaskScreen(navController: NavController) {
                             }
                         }
                 )
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             }
         }
 
@@ -310,7 +387,16 @@ private fun fieldColors() = OutlinedTextFieldDefaults.colors(
     unfocusedBorderColor = Color(0xFFE2E8F0),
     focusedContainerColor = Color.White,
     unfocusedContainerColor = Color.White,
+<<<<<<< HEAD
+    errorBorderColor = Color(0xFFEF4444),
+    disabledBorderColor = Color(0xFFE2E8F0),
+    disabledContainerColor = Color.White,
+    disabledTextColor = Color(0xFF0F172A),
+    disabledTrailingIconColor = Color(0xFF64748B),
+    disabledLabelColor = Color(0xFF64748B)
+=======
     errorBorderColor = Color(0xFFEF4444)
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
 )
 
 private fun showDatePicker(
