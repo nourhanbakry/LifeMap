@@ -1,5 +1,6 @@
 package com.example.lifemap.presentation.Home.view
 
+<<<<<<< HEAD
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -222,3 +223,12 @@ private fun greetingForNow(): String {
         else -> "Good Evening"
     }
 }
+=======
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+
+@Composable
+fun HomeScreen(navController: NavController){
+
+}
+>>>>>>> 9b903e2bfd2f30a5b37e3d0d8a16ae1be7aaa810

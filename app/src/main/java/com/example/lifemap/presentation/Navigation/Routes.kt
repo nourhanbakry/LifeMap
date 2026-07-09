@@ -6,6 +6,7 @@ object Routes {
     const val SIGNUP = "SignUp"
     const val FORGOT_PASSWORD = "ForgotPassword"
     const val HOME = "Home"
+<<<<<<< HEAD
 
     const val CREATE_TASK = "CreateTask"
 
@@ -33,3 +34,6 @@ object Routes {
         else -> HOME
     }
 }
+=======
+}
+>>>>>>> 9b903e2bfd2f30a5b37e3d0d8a16ae1be7aaa810
