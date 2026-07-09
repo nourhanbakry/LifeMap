@@ -5,12 +5,29 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+<<<<<<< HEAD
+import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.lifemap.presentation.CreateTask.view.CreateTaskScreen
+import com.example.lifemap.presentation.EditTask.view.EditTaskScreen
+import com.example.lifemap.presentation.ForgotPassword.view.ForgotPasswordScreen
+import com.example.lifemap.presentation.Habits.view.HabitsScreen
+import com.example.lifemap.presentation.Home.view.HomeScreen
+import com.example.lifemap.presentation.Login.view.LoginScreen
+import com.example.lifemap.presentation.Progress.view.ProgressScreen
+import com.example.lifemap.presentation.Settings.view.SettingsScreen
+=======
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.lifemap.presentation.ForgotPassword.view.ForgotPasswordScreen
 import com.example.lifemap.presentation.Home.view.HomeScreen
 import com.example.lifemap.presentation.Login.view.LoginScreen
+>>>>>>> 9b903e2bfd2f30a5b37e3d0d8a16ae1be7aaa810
 import com.example.lifemap.presentation.SignUp.view.SignUpScreen
 import com.example.lifemap.presentation.welcome.WelcomeScreen
 
@@ -35,6 +52,46 @@ fun Navigation(){
         composable(Routes.HOME) {
             HomeScreen(rememberNavController)
         }
+<<<<<<< HEAD
+        composable(Routes.CREATE_TASK) {
+            CreateTaskScreen(rememberNavController)
+        }
+        composable(
+            route = Routes.EDIT_TASK_ROUTE,
+            arguments = listOf(
+                navArgument(Routes.EDIT_TASK_ARG_TASK_ID) { type = NavType.StringType }
+            )
+        ) {
+            EditTaskScreen(rememberNavController)
+        }
+        composable(Routes.HABITS) {
+            HabitsScreen(rememberNavController)
+        }
+        composable(Routes.PROGRESS) {
+            ProgressScreen(rememberNavController)
+        }
+        composable(Routes.SETTINGS) {
+            SettingsScreen(rememberNavController)
+        }
     }
 }
 
+/**
+ * Navigates to one of the bottom-nav tabs (Home, Habits, Progress, Settings)
+ * while keeping a single, clean back stack - the same tab isn't stacked
+ * multiple times, and switching tabs back and forth restores their state.
+ */
+fun NavController.navigateToBottomNavRoute(route: String) {
+    navigate(route) {
+        popUpTo(Routes.HOME) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState = true
+    }
+}
+=======
+    }
+}
+
+>>>>>>> 9b903e2bfd2f30a5b37e3d0d8a16ae1be7aaa810
