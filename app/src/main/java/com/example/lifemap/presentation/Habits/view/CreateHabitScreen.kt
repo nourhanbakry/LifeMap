@@ -70,7 +70,7 @@ fun CreateHabitScreen(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(20.dp)
+            .padding(horizontal = 32.dp)
     ) {
 
         Row(
