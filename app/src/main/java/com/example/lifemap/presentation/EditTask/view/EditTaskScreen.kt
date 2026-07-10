@@ -13,7 +13,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+<<<<<<< HEAD
 import androidx.compose.foundation.layout.imePadding
+=======
+<<<<<<< HEAD
+import androidx.compose.foundation.layout.imePadding
+=======
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -109,7 +116,14 @@ fun EditTaskScreen(navController: NavController) {
             .fillMaxSize()
             .background(Color(0xFFF8F9FC))
             .verticalScroll(rememberScrollState())
+<<<<<<< HEAD
             .imePadding()
+=======
+<<<<<<< HEAD
+            .imePadding()
+=======
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             .padding(horizontal = 20.dp)
     ) {
 
@@ -178,6 +192,10 @@ fun EditTaskScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         FieldLabel("Date")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         Box(modifier = Modifier.fillMaxWidth()) {
             OutlinedTextField(
                 value = dateFormat.format(state.dateMillis),
@@ -198,12 +216,36 @@ fun EditTaskScreen(navController: NavController) {
                     }
             )
         }
+<<<<<<< HEAD
+=======
+=======
+        OutlinedTextField(
+            value = dateFormat.format(state.dateMillis),
+            onValueChange = {},
+            readOnly = true,
+            trailingIcon = { Icon(Icons.Filled.CalendarToday, contentDescription = "Pick date") },
+            shape = RoundedCornerShape(12.dp),
+            colors = fieldColors(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    showDatePicker(context, state.dateMillis) { millis ->
+                        viewModel.onEvent(EditTaskEvent.DateChanged(millis))
+                    }
+                }
+        )
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Row(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.weight(1f)) {
                 FieldLabel("Start Time")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
                 Box(modifier = Modifier.fillMaxWidth()) {
                     OutlinedTextField(
                         value = state.startTime,
@@ -224,12 +266,36 @@ fun EditTaskScreen(navController: NavController) {
                             }
                     )
                 }
+<<<<<<< HEAD
+=======
+=======
+                OutlinedTextField(
+                    value = state.startTime,
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = { Icon(Icons.Filled.Schedule, contentDescription = "Pick start time") },
+                    shape = RoundedCornerShape(12.dp),
+                    colors = fieldColors(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            showTimePicker(context) { time ->
+                                viewModel.onEvent(EditTaskEvent.StartTimeChanged(time))
+                            }
+                        }
+                )
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             }
 
             Spacer(modifier = Modifier.width(12.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 FieldLabel("End Time")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
                 Box(modifier = Modifier.fillMaxWidth()) {
                     OutlinedTextField(
                         value = state.endTime,
@@ -250,6 +316,26 @@ fun EditTaskScreen(navController: NavController) {
                             }
                     )
                 }
+<<<<<<< HEAD
+=======
+=======
+                OutlinedTextField(
+                    value = state.endTime,
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = { Icon(Icons.Filled.Schedule, contentDescription = "Pick end time") },
+                    shape = RoundedCornerShape(12.dp),
+                    colors = fieldColors(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            showTimePicker(context) { time ->
+                                viewModel.onEvent(EditTaskEvent.EndTimeChanged(time))
+                            }
+                        }
+                )
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             }
         }
 
@@ -327,12 +413,22 @@ private fun fieldColors() = OutlinedTextFieldDefaults.colors(
     unfocusedBorderColor = Color(0xFFE2E8F0),
     focusedContainerColor = Color.White,
     unfocusedContainerColor = Color.White,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     errorBorderColor = Color(0xFFEF4444),
     disabledBorderColor = Color(0xFFE2E8F0),
     disabledContainerColor = Color.White,
     disabledTextColor = Color(0xFF0F172A),
     disabledTrailingIconColor = Color(0xFF64748B),
     disabledLabelColor = Color(0xFF64748B)
+<<<<<<< HEAD
+=======
+=======
+    errorBorderColor = Color(0xFFEF4444)
+>>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 )
 
 private fun showDatePicker(
@@ -376,4 +472,8 @@ private fun showTimePicker(
         calendar.get(Calendar.MINUTE),
         false
     ).show()
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
