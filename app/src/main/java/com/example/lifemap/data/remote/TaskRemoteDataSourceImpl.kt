@@ -7,6 +7,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 
@@ -18,11 +21,14 @@ import javax.inject.Inject
 // stuck on "Saving..."; the write itself is unaffected and still syncs
 // to the server as soon as connectivity allows.
 private const val WRITE_ACK_TIMEOUT_MS = 6000L
+<<<<<<< HEAD
+=======
 
 =======
 import javax.inject.Inject
 
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 class TaskRemoteDataSourceImpl @Inject constructor(
     private val firestore: FirebaseFirestore
 ) : TaskRemoteDataSource {
@@ -76,12 +82,22 @@ class TaskRemoteDataSourceImpl @Inject constructor(
             val newTask = task.copy(id = document.id)
 
 <<<<<<< HEAD
+
+            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
+                document.set(newTask).await()
+            }
+
+            document.set(newTask).await()
+
+=======
+<<<<<<< HEAD
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 document.set(newTask).await()
             }
 =======
             document.set(newTask).await()
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 
             Result.success(newTask)
 
@@ -97,12 +113,21 @@ class TaskRemoteDataSourceImpl @Inject constructor(
         return try {
 
 <<<<<<< HEAD
+
+            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
+                tasksCollection.document(task.id).set(task).await()
+            }
+
+            tasksCollection.document(task.id).set(task).await()
+=======
+<<<<<<< HEAD
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 tasksCollection.document(task.id).set(task).await()
             }
 =======
             tasksCollection.document(task.id).set(task).await()
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 
             Result.success(Unit)
 
@@ -118,12 +143,20 @@ class TaskRemoteDataSourceImpl @Inject constructor(
         return try {
 
 <<<<<<< HEAD
+
+            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
+                tasksCollection.document(taskId).delete().await()
+            }
+            tasksCollection.document(taskId).delete().await()
+=======
+<<<<<<< HEAD
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 tasksCollection.document(taskId).delete().await()
             }
 =======
             tasksCollection.document(taskId).delete().await()
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 
             Result.success(Unit)
 
@@ -139,12 +172,21 @@ class TaskRemoteDataSourceImpl @Inject constructor(
         return try {
 
 <<<<<<< HEAD
+
+            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
+                tasksCollection.document(taskId).update("status", status).await()
+            }
+
+            tasksCollection.document(taskId).update("status", status).await()
+=======
+<<<<<<< HEAD
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 tasksCollection.document(taskId).update("status", status).await()
             }
 =======
             tasksCollection.document(taskId).update("status", status).await()
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 
             Result.success(Unit)
 

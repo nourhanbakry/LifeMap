@@ -15,6 +15,11 @@ import com.example.lifemap.presentation.CreateTask.view.CreateTaskScreen
 import com.example.lifemap.presentation.EditTask.view.EditTaskScreen
 import com.example.lifemap.presentation.ForgotPassword.view.ForgotPasswordScreen
 import com.example.lifemap.presentation.Habits.view.HabitsScreen
+<<<<<<< HEAD
+import com.example.lifemap.presentation.Habits.view.CreateHabitScreen
+import com.example.lifemap.presentation.Habits.view.UpdateHabitScreen
+=======
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 import com.example.lifemap.presentation.Home.view.HomeScreen
 import com.example.lifemap.presentation.Login.view.LoginScreen
 import com.example.lifemap.presentation.Progress.view.ProgressScreen
@@ -55,7 +60,41 @@ fun Navigation(){
             EditTaskScreen(rememberNavController)
         }
         composable(Routes.HABITS) {
+<<<<<<< HEAD
+            HabitsScreen(
+                navController = rememberNavController,
+                onAddHabit = {
+                    rememberNavController.navigate(Routes.CREATE_HABIT)
+                },
+                onHabitClick = { habitId ->
+                    rememberNavController.navigate(Routes.updateHabitRoute(habitId))
+                }
+            )
+        }
+        composable(Routes.CREATE_HABIT) {
+            CreateHabitScreen(
+                onClose = {
+                    rememberNavController.popBackStack()
+                },
+                onHabitSaved = {
+                    rememberNavController.popBackStack()
+                }
+            )
+        }
+        composable(
+            route = Routes.UPDATE_HABIT,
+            arguments = listOf(
+                navArgument(Routes.UPDATE_HABIT_ARG_HABIT_ID) { type = NavType.StringType }
+            )
+        ) {
+            UpdateHabitScreen(
+                onClose = {
+                    rememberNavController.popBackStack()
+                }
+            )
+=======
             HabitsScreen(rememberNavController)
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         }
         composable(Routes.PROGRESS) {
             ProgressScreen(rememberNavController)
@@ -79,5 +118,9 @@ fun NavController.navigateToBottomNavRoute(route: String) {
         launchSingleTop = true
         restoreState = true
     }
+<<<<<<< HEAD
+}
+=======
 }
 
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073

@@ -36,11 +36,16 @@ class HomeViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = today,
 <<<<<<< HEAD
+            weekDatesMillis = computeWeek(today),
+            monthLabel = monthLabel(today),
+=======
+<<<<<<< HEAD
             weekDatesMillis = computeMonthDays(today),
 =======
             weekDatesMillis = computeWeek(today),
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             monthLabel = monthLabel(today)
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         )
 
         loadUserAndTasks()
@@ -95,10 +100,14 @@ class HomeViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = normalized,
 <<<<<<< HEAD
+            weekDatesMillis = computeWeek(normalized),
+=======
+<<<<<<< HEAD
             weekDatesMillis = computeMonthDays(normalized),
 =======
             weekDatesMillis = computeWeek(normalized),
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             monthLabel = monthLabel(normalized)
         )
 
@@ -117,10 +126,14 @@ class HomeViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = newDate,
 <<<<<<< HEAD
+            weekDatesMillis = computeWeek(newDate),
+=======
+<<<<<<< HEAD
             weekDatesMillis = computeMonthDays(newDate),
 =======
             weekDatesMillis = computeWeek(newDate),
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             monthLabel = monthLabel(newDate)
         )
 
@@ -171,6 +184,8 @@ class HomeViewModel @Inject constructor(
     }
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     private fun computeMonthDays(dateMillis: Long): List<Long> {
 
         val calendar = Calendar.getInstance()
@@ -188,6 +203,7 @@ class HomeViewModel @Inject constructor(
 
         return days
 =======
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     private fun computeWeek(dateMillis: Long): List<Long> {
 
         val calendar = Calendar.getInstance()
@@ -206,7 +222,10 @@ class HomeViewModel @Inject constructor(
         }
 
         return week
+<<<<<<< HEAD
+=======
 >>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     }
 
     private fun monthLabel(dateMillis: Long): String {
@@ -215,4 +234,8 @@ class HomeViewModel @Inject constructor(
 
         return format.format(dateMillis)
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073

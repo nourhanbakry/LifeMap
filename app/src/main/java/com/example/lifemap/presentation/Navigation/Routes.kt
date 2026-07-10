@@ -20,6 +20,17 @@ object Routes {
     const val PROGRESS = "Progress"
     const val SETTINGS = "Settings"
 
+<<<<<<< HEAD
+    // Habits feature routes
+    const val CREATE_HABIT = "CreateHabit"
+
+    const val UPDATE_HABIT_ARG_HABIT_ID = "habitId"
+    const val UPDATE_HABIT = "UpdateHabit/{$UPDATE_HABIT_ARG_HABIT_ID}"
+
+    fun updateHabitRoute(habitId: String) = "UpdateHabit/$habitId"
+
+=======
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     /**
      * Maps a BottomNavBar item label to its route.
      * Kept in one place so adding/renaming a tab only needs a single edit.
@@ -31,5 +42,9 @@ object Routes {
         SETTINGS -> SETTINGS
         else -> HOME
     }
+<<<<<<< HEAD
+}
+=======
 }
 
+>>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
