@@ -58,6 +58,7 @@ fun Navigation(){
         }
         composable(Routes.HABITS) {
             HabitsScreen(
+                navController = rememberNavController,
                 onAddHabit = {
                     rememberNavController.navigate(Routes.CREATE_HABIT)
                 },

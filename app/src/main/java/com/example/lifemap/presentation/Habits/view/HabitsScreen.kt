@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,8 +19,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,14 +36,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.lifemap.domain.entity.Habit
 import com.example.lifemap.presentation.Habits.viewModel.HabitsViewModel
+import com.example.lifemap.presentation.Home.view.components.BottomNavBar
+import com.example.lifemap.presentation.Navigation.Routes
+import com.example.lifemap.presentation.Navigation.navigateToBottomNavRoute
+import kotlin.math.roundToInt
 
 private val GradientStart = Color(0xFF3A2E8F)
 private val GradientEnd = Color(0xFFC81E5C)
 
 @Composable
 fun HabitsScreen(
+    navController: NavController,
     viewModel: HabitsViewModel = hiltViewModel(),
     onAddHabit: () -> Unit,
     onHabitClick: (String) -> Unit
@@ -47,27 +57,73 @@ fun HabitsScreen(
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Scaffold(
+        containerColor = Color(0xFFF8F9FC),
+        bottomBar = {
+            BottomNavBar(
+                selectedLabel = "Habits",
+                onItemClick = { label ->
+                    navController.navigateToBottomNavRoute(Routes.routeForBottomNavLabel(label))
+                }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onAddHabit,
+                shape = CircleShape,
+                containerColor = Color.Transparent,
+                modifier = Modifier.background(
+                    brush = Brush.linearGradient(listOf(GradientStart, GradientEnd)),
+                    shape = CircleShape
+                )
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add Habit",
+                    tint = Color.White
+                )
+            }
+        }
+    ) { padding ->
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp)
+                .padding(padding)
+                .padding(horizontal = 20.dp)
         ) {
 
-            Text(
-                text = "Habits",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
+            Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = "Build better habits every day",
-                fontSize = 13.sp,
-                color = Color.Gray
-            )
+            // ------ Header ------
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+
+                Column {
+                    Text(
+                        text = "Habits",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF0F172A)
+                    )
+                    Text(
+                        text = "Build better habits every day",
+                        fontSize = 13.sp,
+                        color = Color(0xFF64748B)
+                    )
+                }
+
+                Icon(
+                    imageVector = Icons.Filled.Notifications,
+                    contentDescription = "Notifications",
+                    tint = Color(0xFF0F172A),
+                    modifier = Modifier.size(28.dp)
+                )
+
+            }
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -102,7 +158,7 @@ fun HabitsScreen(
 
                         Text(
                             text = "No habits yet. Tap + to add your first habit.",
-                            color = Color.Gray
+                            color = Color(0xFF94A3B8)
                         )
 
                     }
@@ -112,7 +168,8 @@ fun HabitsScreen(
                 else -> {
 
                     LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        contentPadding = PaddingValues(bottom = 96.dp)
                     ) {
 
                         items(
@@ -122,7 +179,7 @@ fun HabitsScreen(
 
                             HabitCard(
                                 habit = habit,
-                                onClick = { onHabitClick(habit.id) }
+                                onUpdateProgress = { onHabitClick(habit.id) }
                             )
 
                         }
@@ -135,34 +192,13 @@ fun HabitsScreen(
 
         }
 
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(20.dp)
-                .size(56.dp)
-                .background(
-                    brush = Brush.linearGradient(listOf(GradientStart, GradientEnd)),
-                    shape = CircleShape
-                )
-                .clickable { onAddHabit() },
-            contentAlignment = Alignment.Center
-        ) {
-
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = "Add Habit",
-                tint = Color.White
-            )
-
-        }
-
     }
 }
 
 @Composable
 private fun HabitCard(
     habit: Habit,
-    onClick: () -> Unit
+    onUpdateProgress: () -> Unit
 ) {
 
     val progressFraction =
@@ -171,33 +207,58 @@ private fun HabitCard(
         else
             0f
 
+    val progressPercent = (progressFraction * 100).roundToInt()
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFFF7F7FA), RoundedCornerShape(18.dp))
-            .clickable { onClick() }
-            .padding(16.dp)
+            .background(Color.White, RoundedCornerShape(20.dp))
+            .padding(20.dp)
     ) {
 
-        Text(
-            text = habit.name,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Text(
+                text = habit.name,
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF0F172A)
+            )
+
+            Box(
+                modifier = Modifier
+                    .background(Color(0xFFF3E8FF), RoundedCornerShape(12.dp))
+                    .padding(horizontal = 10.dp, vertical = 4.dp)
+            ) {
+                Text(
+                    text = habit.streak.toString(),
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF7C3AED)
+                )
+            }
+
+        }
+
+        Spacer(modifier = Modifier.height(4.dp))
 
         Text(
             text = "Goal: ${habit.goalValue} ${habit.goalUnit}",
-            fontSize = 12.sp,
-            color = Color.Gray
+            fontSize = 13.sp,
+            color = Color(0xFF64748B)
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(14.dp))
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(8.dp)
-                .background(Color(0xFFE0E0E0), RoundedCornerShape(4.dp))
+                .background(Color(0xFFE5E7EB), RoundedCornerShape(4.dp))
         ) {
 
             Box(
@@ -214,11 +275,47 @@ private fun HabitCard(
 
         Spacer(modifier = Modifier.height(6.dp))
 
-        Text(
-            text = "${habit.currentProgress} / ${habit.goalValue}",
-            fontSize = 12.sp,
-            color = Color.Gray
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            Text(
+                text = "${habit.currentProgress} / ${habit.goalValue}",
+                fontSize = 12.sp,
+                color = Color(0xFF64748B)
+            )
+
+            Text(
+                text = "$progressPercent%",
+                fontSize = 12.sp,
+                color = Color(0xFF64748B)
+            )
+
+        }
+
+        Spacer(modifier = Modifier.height(14.dp))
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    brush = Brush.linearGradient(listOf(GradientStart, GradientEnd)),
+                    shape = RoundedCornerShape(14.dp)
+                )
+                .clickable { onUpdateProgress() }
+                .padding(vertical = 12.dp),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Text(
+                text = "Update Progress",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White
+            )
+
+        }
 
     }
 }

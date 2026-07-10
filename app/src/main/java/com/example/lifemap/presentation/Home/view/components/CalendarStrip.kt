@@ -2,10 +2,9 @@ package com.example.lifemap.presentation.Home.view.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-<<<<<<< HEAD
+
 import androidx.compose.foundation.horizontalScroll
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,11 +12,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-<<<<<<< HEAD
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,30 +23,20 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-<<<<<<< HEAD
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
-=======
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-<<<<<<< HEAD
 // Width reserved for a single day column (used both for layout and for
 // calculating how far to scroll to bring the selected day into view).
 private val DAY_ITEM_WIDTH = 48.dp
-
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
 @Composable
 fun CalendarStrip(
     monthLabel: String,
@@ -63,7 +49,7 @@ fun CalendarStrip(
     val dayNameFormat = SimpleDateFormat("EEE", Locale.US)
     val dayNumberFormat = SimpleDateFormat("d", Locale.US)
 
-<<<<<<< HEAD
+
     val scrollState = rememberScrollState()
     val density = LocalDensity.current
 
@@ -79,8 +65,6 @@ fun CalendarStrip(
         }
     }
 
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -111,14 +95,9 @@ fun CalendarStrip(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-<<<<<<< HEAD
                 .padding(top = 8.dp)
                 .horizontalScroll(scrollState),
             horizontalArrangement = Arrangement.spacedBy(4.dp)
-=======
-                .padding(top = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
         ) {
             weekDatesMillis.forEach { dateMillis ->
 
@@ -126,13 +105,9 @@ fun CalendarStrip(
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-<<<<<<< HEAD
                     modifier = Modifier
                         .width(DAY_ITEM_WIDTH)
                         .clickable { onDaySelected(dateMillis) }
-=======
-                    modifier = Modifier.clickable { onDaySelected(dateMillis) }
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
                 ) {
                     Text(
                         text = dayNameFormat.format(dateMillis).uppercase(),
