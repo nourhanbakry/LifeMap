@@ -25,116 +25,89 @@ import com.example.lifemap.presentation.SignUp.view.SignUpScreen
 import com.example.lifemap.presentation.welcome.WelcomeScreen
 
 @Composable
-fun Navigation() {
+fun Navigation(){
+    val rememberNavController = rememberNavController()
+    var startDestination by remember { mutableStateOf(Routes.WELCOME) }
 
-    val navController = rememberNavController()
-
-    var startDestination by remember {
-        mutableStateOf(Routes.WELCOME)
-    }
-
-    NavHost(
-        navController = navController,
-        startDestination = startDestination
-    ) {
-
+    NavHost(navController = rememberNavController, startDestination = startDestination) {
         composable(Routes.WELCOME) {
-            WelcomeScreen(navController)
+            WelcomeScreen(rememberNavController)
         }
-
         composable(Routes.LOGIN) {
-            LoginScreen(navController)
+            LoginScreen(rememberNavController)
         }
-
         composable(Routes.SIGNUP) {
-            SignUpScreen(navController)
+            SignUpScreen(rememberNavController)
         }
-
         composable(Routes.FORGOT_PASSWORD) {
-            ForgotPasswordScreen(navController)
+            ForgotPasswordScreen(rememberNavController)
         }
-
         composable(Routes.HOME) {
-            HomeScreen(navController)
+            HomeScreen(rememberNavController)
         }
-
         composable(Routes.CREATE_TASK) {
-            CreateTaskScreen(navController)
+            CreateTaskScreen(rememberNavController)
         }
-
         composable(
             route = Routes.EDIT_TASK_ROUTE,
             arguments = listOf(
-                navArgument(Routes.EDIT_TASK_ARG_TASK_ID) {
-                    type = NavType.StringType
-                }
+                navArgument(Routes.EDIT_TASK_ARG_TASK_ID) { type = NavType.StringType }
             )
         ) {
-            EditTaskScreen(navController)
+            EditTaskScreen(rememberNavController)
         }
-
         composable(Routes.HABITS) {
             HabitsScreen(
-                navController = navController,
+                navController = rememberNavController,
                 onAddHabit = {
-                    navController.navigate(Routes.CREATE_HABIT)
+                    rememberNavController.navigate(Routes.CREATE_HABIT)
                 },
                 onHabitClick = { habitId ->
-                    navController.navigate(
-                        Routes.updateHabitRoute(habitId)
-                    )
+                    rememberNavController.navigate(Routes.updateHabitRoute(habitId))
                 }
             )
         }
-
         composable(Routes.CREATE_HABIT) {
             CreateHabitScreen(
                 onClose = {
-                    navController.popBackStack()
+                    rememberNavController.popBackStack()
                 },
                 onHabitSaved = {
-                    navController.popBackStack()
+                    rememberNavController.popBackStack()
                 }
             )
         }
-
         composable(
             route = Routes.UPDATE_HABIT,
             arguments = listOf(
-                navArgument(Routes.UPDATE_HABIT_ARG_HABIT_ID) {
-                    type = NavType.StringType
-                }
+                navArgument(Routes.UPDATE_HABIT_ARG_HABIT_ID) { type = NavType.StringType }
             )
         ) {
             UpdateHabitScreen(
                 onClose = {
-                    navController.popBackStack()
+                    rememberNavController.popBackStack()
                 }
             )
         }
-
         composable(Routes.PROGRESS) {
-            ProgressScreen(navController)
+            ProgressScreen(rememberNavController)
         }
-
         composable(Routes.SETTINGS) {
-            SettingsScreen(navController)
+            SettingsScreen(rememberNavController)
         }
     }
 }
 
 /**
- * Navigates to one of the bottom-nav tabs
- * while keeping a clean back stack.
+ * Navigates to one of the bottom-nav tabs (Home, Habits, Progress, Settings)
+ * while keeping a single, clean back stack - the same tab isn't stacked
+ * multiple times, and switching tabs back and forth restores their state.
  */
 fun NavController.navigateToBottomNavRoute(route: String) {
-
     navigate(route) {
-
         popUpTo(Routes.HOME) {
             saveState = true
         }
-
         launchSingleTop = true
         restoreState = true
     }
