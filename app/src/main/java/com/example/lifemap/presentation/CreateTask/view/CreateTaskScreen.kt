@@ -12,14 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-<<<<<<< HEAD
 import androidx.compose.foundation.layout.imePadding
-=======
-<<<<<<< HEAD
-import androidx.compose.foundation.layout.imePadding
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -81,14 +74,7 @@ fun CreateTaskScreen(navController: NavController) {
             .fillMaxSize()
             .background(Color(0xFFF8F9FC))
             .verticalScroll(rememberScrollState())
-<<<<<<< HEAD
             .imePadding()
-=======
-<<<<<<< HEAD
-            .imePadding()
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             .padding(horizontal = 20.dp)
     ) {
 
@@ -154,11 +140,7 @@ fun CreateTaskScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         FieldLabel("Date")
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         Box(modifier = Modifier.fillMaxWidth()) {
             OutlinedTextField(
                 value = dateFormat.format(state.dateMillis),
@@ -181,10 +163,6 @@ fun CreateTaskScreen(navController: NavController) {
                     }
             )
         }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         OutlinedTextField(
             value = dateFormat.format(state.dateMillis),
             onValueChange = {},
@@ -202,21 +180,13 @@ fun CreateTaskScreen(navController: NavController) {
                     }
                 }
         )
-<<<<<<< HEAD
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Row(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.weight(1f)) {
                 FieldLabel("Start Time")
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
                 Box(modifier = Modifier.fillMaxWidth()) {
                     OutlinedTextField(
                         value = state.startTime,
@@ -237,10 +207,6 @@ fun CreateTaskScreen(navController: NavController) {
                             }
                     )
                 }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
                 OutlinedTextField(
                     value = state.startTime,
                     onValueChange = {},
@@ -256,21 +222,13 @@ fun CreateTaskScreen(navController: NavController) {
                             }
                         }
                 )
-<<<<<<< HEAD
 
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             }
 
             Spacer(modifier = Modifier.width(12.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 FieldLabel("End Time")
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
                 Box(modifier = Modifier.fillMaxWidth()) {
                     OutlinedTextField(
                         value = state.endTime,
@@ -291,10 +249,6 @@ fun CreateTaskScreen(navController: NavController) {
                             }
                     )
                 }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
                 OutlinedTextField(
                     value = state.endTime,
                     onValueChange = {},
@@ -310,11 +264,7 @@ fun CreateTaskScreen(navController: NavController) {
                             }
                         }
                 )
-<<<<<<< HEAD
 
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             }
         }
 
@@ -392,24 +342,13 @@ private fun fieldColors() = OutlinedTextFieldDefaults.colors(
     unfocusedBorderColor = Color(0xFFE2E8F0),
     focusedContainerColor = Color.White,
     unfocusedContainerColor = Color.White,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     errorBorderColor = Color(0xFFEF4444),
     disabledBorderColor = Color(0xFFE2E8F0),
     disabledContainerColor = Color.White,
     disabledTextColor = Color(0xFF0F172A),
     disabledTrailingIconColor = Color(0xFF64748B),
-<<<<<<< HEAD
     disabledLabelColor = Color(0xFF64748B),
 
-=======
-    disabledLabelColor = Color(0xFF64748B)
-=======
-    errorBorderColor = Color(0xFFEF4444)
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 )
 
 private fun showDatePicker(

@@ -35,17 +35,8 @@ class HomeViewModel @Inject constructor(
 
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = today,
-<<<<<<< HEAD
             weekDatesMillis = computeWeek(today),
-            monthLabel = monthLabel(today),
-=======
-<<<<<<< HEAD
-            weekDatesMillis = computeMonthDays(today),
-=======
-            weekDatesMillis = computeWeek(today),
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
             monthLabel = monthLabel(today)
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         )
 
         loadUserAndTasks()
@@ -76,7 +67,9 @@ class HomeViewModel @Inject constructor(
             val user = userPreferences.getUser()
             currentUserId = user?.uid
 
-            _uiState.value = _uiState.value.copy(userName = user?.fullName ?: "")
+            _uiState.value = _uiState.value.copy(
+                userName = user?.fullName ?: ""
+            )
 
             val uid = currentUserId
 
@@ -99,15 +92,7 @@ class HomeViewModel @Inject constructor(
 
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = normalized,
-<<<<<<< HEAD
             weekDatesMillis = computeWeek(normalized),
-=======
-<<<<<<< HEAD
-            weekDatesMillis = computeMonthDays(normalized),
-=======
-            weekDatesMillis = computeWeek(normalized),
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             monthLabel = monthLabel(normalized)
         )
 
@@ -118,6 +103,7 @@ class HomeViewModel @Inject constructor(
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = _uiState.value.selectedDateMillis
+
         calendar.add(Calendar.MONTH, amount)
         calendar.set(Calendar.DAY_OF_MONTH, 1)
 
@@ -125,15 +111,7 @@ class HomeViewModel @Inject constructor(
 
         _uiState.value = _uiState.value.copy(
             selectedDateMillis = newDate,
-<<<<<<< HEAD
             weekDatesMillis = computeWeek(newDate),
-=======
-<<<<<<< HEAD
-            weekDatesMillis = computeMonthDays(newDate),
-=======
-            weekDatesMillis = computeWeek(newDate),
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
             monthLabel = monthLabel(newDate)
         )
 
@@ -142,11 +120,14 @@ class HomeViewModel @Inject constructor(
 
     private fun applyDateFilter() {
 
-        val selectedDateString = dateFormat.format(_uiState.value.selectedDateMillis)
+        val selectedDateString =
+            dateFormat.format(_uiState.value.selectedDateMillis)
 
-        val tasksForDate = allTasks.filter { it.date == selectedDateString }
+        val tasksForDate =
+            allTasks.filter { it.date == selectedDateString }
 
-        _uiState.value = _uiState.value.copy(allTasksForDate = tasksForDate)
+        _uiState.value =
+            _uiState.value.copy(allTasksForDate = tasksForDate)
 
         applyFilter()
     }
@@ -155,25 +136,37 @@ class HomeViewModel @Inject constructor(
 
         val state = _uiState.value
 
-        val filtered = if (state.selectedFilter == "All") {
-            state.allTasksForDate
-        } else {
-            state.allTasksForDate.filter { it.status == state.selectedFilter }
-        }
+        val filtered =
+            if (state.selectedFilter == "All") {
+                state.allTasksForDate
+            } else {
+                state.allTasksForDate.filter {
+                    it.status == state.selectedFilter
+                }
+            }
 
-        _uiState.value = state.copy(filteredTasks = filtered)
+        _uiState.value = state.copy(
+            filteredTasks = filtered
+        )
     }
 
-    private fun toggleStatus(taskId: String, newStatus: String) {
+    private fun toggleStatus(
+        taskId: String,
+        newStatus: String
+    ) {
 
         viewModelScope.launch {
-            taskRepository.updateTaskStatus(taskId, newStatus)
+            taskRepository.updateTaskStatus(
+                taskId,
+                newStatus
+            )
         }
     }
 
     private fun startOfDay(millis: Long): Long {
 
         val calendar = Calendar.getInstance()
+
         calendar.timeInMillis = millis
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.set(Calendar.MINUTE, 0)
@@ -183,34 +176,13 @@ class HomeViewModel @Inject constructor(
         return calendar.timeInMillis
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    private fun computeMonthDays(dateMillis: Long): List<Long> {
-
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = dateMillis
-        calendar.set(Calendar.DAY_OF_MONTH, 1)
-
-        val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-
-        val days = mutableListOf<Long>()
-
-        for (i in 0 until daysInMonth) {
-            days.add(calendar.timeInMillis)
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
-        }
-
-        return days
-=======
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     private fun computeWeek(dateMillis: Long): List<Long> {
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = dateMillis
 
-        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) // SUNDAY=1 .. SATURDAY=7
-        val mondayBasedIndex = (dayOfWeek + 5) % 7 // MONDAY=0 .. SUNDAY=6
+        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+        val mondayBasedIndex = (dayOfWeek + 5) % 7
 
         calendar.add(Calendar.DAY_OF_MONTH, -mondayBasedIndex)
 
@@ -222,20 +194,15 @@ class HomeViewModel @Inject constructor(
         }
 
         return week
-<<<<<<< HEAD
-=======
->>>>>>> 2029bc243a7de2b70403f1f79fcda4d28253bcf9
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
     }
 
     private fun monthLabel(dateMillis: Long): String {
 
-        val format = SimpleDateFormat("MMMM yyyy", Locale.US)
+        val format = SimpleDateFormat(
+            "MMMM yyyy",
+            Locale.US
+        )
 
         return format.format(dateMillis)
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073

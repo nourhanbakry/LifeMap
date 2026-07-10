@@ -14,12 +14,9 @@ import androidx.navigation.navArgument
 import com.example.lifemap.presentation.CreateTask.view.CreateTaskScreen
 import com.example.lifemap.presentation.EditTask.view.EditTaskScreen
 import com.example.lifemap.presentation.ForgotPassword.view.ForgotPasswordScreen
-import com.example.lifemap.presentation.Habits.view.HabitsScreen
-<<<<<<< HEAD
 import com.example.lifemap.presentation.Habits.view.CreateHabitScreen
+import com.example.lifemap.presentation.Habits.view.HabitsScreen
 import com.example.lifemap.presentation.Habits.view.UpdateHabitScreen
-=======
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
 import com.example.lifemap.presentation.Home.view.HomeScreen
 import com.example.lifemap.presentation.Login.view.LoginScreen
 import com.example.lifemap.presentation.Progress.view.ProgressScreen
@@ -28,99 +25,117 @@ import com.example.lifemap.presentation.SignUp.view.SignUpScreen
 import com.example.lifemap.presentation.welcome.WelcomeScreen
 
 @Composable
-fun Navigation(){
-    val rememberNavController = rememberNavController()
-    var startDestination by remember { mutableStateOf(Routes.WELCOME) }
+fun Navigation() {
 
-    NavHost(navController = rememberNavController, startDestination = startDestination) {
+    val navController = rememberNavController()
+
+    var startDestination by remember {
+        mutableStateOf(Routes.WELCOME)
+    }
+
+    NavHost(
+        navController = navController,
+        startDestination = startDestination
+    ) {
+
         composable(Routes.WELCOME) {
-            WelcomeScreen(rememberNavController)
+            WelcomeScreen(navController)
         }
+
         composable(Routes.LOGIN) {
-            LoginScreen(rememberNavController)
+            LoginScreen(navController)
         }
+
         composable(Routes.SIGNUP) {
-            SignUpScreen(rememberNavController)
+            SignUpScreen(navController)
         }
+
         composable(Routes.FORGOT_PASSWORD) {
-            ForgotPasswordScreen(rememberNavController)
+            ForgotPasswordScreen(navController)
         }
+
         composable(Routes.HOME) {
-            HomeScreen(rememberNavController)
+            HomeScreen(navController)
         }
+
         composable(Routes.CREATE_TASK) {
-            CreateTaskScreen(rememberNavController)
+            CreateTaskScreen(navController)
         }
+
         composable(
             route = Routes.EDIT_TASK_ROUTE,
             arguments = listOf(
-                navArgument(Routes.EDIT_TASK_ARG_TASK_ID) { type = NavType.StringType }
+                navArgument(Routes.EDIT_TASK_ARG_TASK_ID) {
+                    type = NavType.StringType
+                }
             )
         ) {
-            EditTaskScreen(rememberNavController)
+            EditTaskScreen(navController)
         }
+
         composable(Routes.HABITS) {
-<<<<<<< HEAD
             HabitsScreen(
-                navController = rememberNavController,
+                navController = navController,
                 onAddHabit = {
-                    rememberNavController.navigate(Routes.CREATE_HABIT)
+                    navController.navigate(Routes.CREATE_HABIT)
                 },
                 onHabitClick = { habitId ->
-                    rememberNavController.navigate(Routes.updateHabitRoute(habitId))
+                    navController.navigate(
+                        Routes.updateHabitRoute(habitId)
+                    )
                 }
             )
         }
+
         composable(Routes.CREATE_HABIT) {
             CreateHabitScreen(
                 onClose = {
-                    rememberNavController.popBackStack()
+                    navController.popBackStack()
                 },
                 onHabitSaved = {
-                    rememberNavController.popBackStack()
+                    navController.popBackStack()
                 }
             )
         }
+
         composable(
             route = Routes.UPDATE_HABIT,
             arguments = listOf(
-                navArgument(Routes.UPDATE_HABIT_ARG_HABIT_ID) { type = NavType.StringType }
+                navArgument(Routes.UPDATE_HABIT_ARG_HABIT_ID) {
+                    type = NavType.StringType
+                }
             )
         ) {
             UpdateHabitScreen(
                 onClose = {
-                    rememberNavController.popBackStack()
+                    navController.popBackStack()
                 }
             )
-=======
-            HabitsScreen(rememberNavController)
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
         }
+
         composable(Routes.PROGRESS) {
-            ProgressScreen(rememberNavController)
+            ProgressScreen(navController)
         }
+
         composable(Routes.SETTINGS) {
-            SettingsScreen(rememberNavController)
+            SettingsScreen(navController)
         }
     }
 }
 
 /**
- * Navigates to one of the bottom-nav tabs (Home, Habits, Progress, Settings)
- * while keeping a single, clean back stack - the same tab isn't stacked
- * multiple times, and switching tabs back and forth restores their state.
+ * Navigates to one of the bottom-nav tabs
+ * while keeping a clean back stack.
  */
 fun NavController.navigateToBottomNavRoute(route: String) {
+
     navigate(route) {
+
         popUpTo(Routes.HOME) {
             saveState = true
         }
+
         launchSingleTop = true
         restoreState = true
     }
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> e4c6a877bfa3a3c64ec43f0d145666760c092073
