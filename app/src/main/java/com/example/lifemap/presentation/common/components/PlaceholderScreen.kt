@@ -77,7 +77,7 @@ fun PlaceholderScreen(
                 )
 
                 Text(
-                    text = "Coming soon",
+                    text = "coming soon",
                     fontSize = 14.sp,
                     color = Color(0xFF64748B),
                     modifier = Modifier.padding(top = 4.dp)

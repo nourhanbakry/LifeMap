@@ -69,17 +69,9 @@ class TaskRemoteDataSourceImpl @Inject constructor(
             val document = tasksCollection.document()
             val newTask = task.copy(id = document.id)
 
-
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 document.set(newTask).await()
             }
-
-            document.set(newTask).await()
-
-            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
-                document.set(newTask).await()
-            }
-            document.set(newTask).await()
 
             Result.success(newTask)
 
@@ -94,18 +86,9 @@ class TaskRemoteDataSourceImpl @Inject constructor(
 
         return try {
 
-
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 tasksCollection.document(task.id).set(task).await()
             }
-
-            tasksCollection.document(task.id).set(task).await()
-            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
-                tasksCollection.document(task.id).set(task).await()
-            }
-
-            tasksCollection.document(task.id).set(task).await()
-
 
             Result.success(Unit)
 
@@ -120,18 +103,9 @@ class TaskRemoteDataSourceImpl @Inject constructor(
 
         return try {
 
-
-
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 tasksCollection.document(taskId).delete().await()
             }
-            tasksCollection.document(taskId).delete().await()
-            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
-                tasksCollection.document(taskId).delete().await()
-            }
-
-            tasksCollection.document(taskId).delete().await()
-
 
             Result.success(Unit)
 
@@ -146,19 +120,9 @@ class TaskRemoteDataSourceImpl @Inject constructor(
 
         return try {
 
-
-
             withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
                 tasksCollection.document(taskId).update("status", status).await()
             }
-
-            tasksCollection.document(taskId).update("status", status).await()
-            withTimeoutOrNull(WRITE_ACK_TIMEOUT_MS) {
-                tasksCollection.document(taskId).update("status", status).await()
-            }
-
-            tasksCollection.document(taskId).update("status", status).await()
-
 
             Result.success(Unit)
 

@@ -35,7 +35,6 @@ import java.util.Locale
 // Width reserved for a single day column (used both for layout and for
 // calculating how far to scroll to bring the selected day into view).
 private val DAY_ITEM_WIDTH = 48.dp
-
 @Composable
 fun CalendarStrip(
     monthLabel: String,
@@ -62,7 +61,6 @@ fun CalendarStrip(
             scrollState.animateScrollTo(target)
         }
     }
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -137,6 +135,8 @@ fun CalendarStrip(
 }
 
 private fun isSameDay(a: Long, b: Long): Boolean {
+
     val format = SimpleDateFormat("yyyyMMdd", Locale.US)
+
     return format.format(a) == format.format(b)
 }
